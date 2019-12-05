@@ -1,6 +1,7 @@
 # Assignment 9 - PokeGUI
 ## 100 Points
-## Due Tuesday 5/7 (Final Exam day) 
+## Review/In class workday: last day of classes Thurs 12/12.
+## Due Thursday 12/19 at noon (Final Exam day) 
 ----
 
 
