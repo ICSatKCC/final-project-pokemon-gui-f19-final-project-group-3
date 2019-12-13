@@ -87,11 +87,11 @@ public class PokemonPanel extends JPanel {
       this.setPreferredSize(new Dimension(400, 500));
       topSubPanel.setBackground(Color.gray); //north area color
       //centerSubPanel.setBorder(BorderFactory.createLineBorder(Color.black));
-      centerSubPanel.setBackground(Color.gray); //center area color
+      centerSubPanel.setBackground(Color.lightGray); //center area color
       //centerSubPanel.setLayout(gl);
       //centerSubPanel.setLayout(new BorderLayout());
    
-      bottomSubPanel.setBackground(Color.gray); //bottomSubPanel area color
+      bottomSubPanel.setBackground(Color.lightGray); //bottomSubPanel area color
      
      //adding title to the topSubPanel
       topSubPanel.setBorder((BorderFactory.createTitledBorder(
@@ -178,7 +178,7 @@ public class PokemonPanel extends JPanel {
          } 
       //if "Pokedex" button clicked, print pokemons from assignment7    
          if (event.getSource()  == bPokedex) { 
-         // textArea2.setText(pTree.printPokeTree() + "\n");
+            textArea2.setText(pTree.printPokeTree2() + "\n");
          } 
       //if "Backpack" button clicked   
          if (event.getSource()  == bBackpack) { 
@@ -265,17 +265,16 @@ public class PokemonPanel extends JPanel {
       
       } //end catchPokemon method
       
-      private void recentSort() {
+      private String recentSort() {
          
-         System.out.println("========= Sorted Pokemon by recent ==========");
-         System.out.println();
+         String sRecent = "";
       
          while (stack.size() > 0) {
             Pokemon curr = stack.poll();
-            System.out.println(curr.toString() + "\n");
-            
+            sRecent = sRecent + curr.toString() + "\n\n";
          
          }
+         return sRecent
       
       } // end recentSort
    

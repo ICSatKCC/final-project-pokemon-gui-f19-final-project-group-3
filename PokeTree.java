@@ -237,6 +237,12 @@ public class PokeTree {
       this.printPokeTree(root);
    }
    
+   public String printPokeTree2(){
+      
+      return this.printPokeTree2(root);
+   }
+
+   
 //switch position to print the tree by inorder
    
    public void printPokeTree(PokeNode root){
@@ -247,6 +253,18 @@ public class PokeTree {
       
       }
    }
+   
+   public String printPokeTree2(PokeNode root){
+      
+      String s = "";
+      if(root != null){
+         s = s + printPokeTree2(root.getLChild());
+         s = s +  "  " + root.getPokemon( ).toString() + "\nCaught: "+root.getNumCaught( ) + "\n\n";
+         s = s + printPokeTree2(root.getRChild());
+      }
+      return s;
+   }
+
     
 
 } // end of class
