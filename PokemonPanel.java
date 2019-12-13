@@ -2,6 +2,9 @@ import java.util.*;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*; //add this for the listener
+import javax.swing.BorderFactory; 
+import javax.swing.border.Border;
+
 
 /**
 * Panel for PokemonFrame GUI.
@@ -13,7 +16,7 @@ import java.awt.event.*; //add this for the listener
 public class PokemonPanel extends JPanel {
 
   /********* label. ************/
-   private JLabel lTitle = new JLabel("To Catch a Pokemon");
+ //  private JLabel lTitle = new JLabel("To Catch a Pokemon");
    /********* label. ************/
    private JLabel lMsg = new JLabel("                ");
   /******* button. ****************/
@@ -21,14 +24,24 @@ public class PokemonPanel extends JPanel {
    /******* button. ****************/
    private JButton bCatch = new JButton(" Catch ");
    /******* button with pic. ****************/
-   private ImageIcon pokedex = new ImageIcon(".png");
+   private ImageIcon pokedex = new ImageIcon("pokedex.png");
    /******* button with pic. ****************/
-   private ImageIcon backpack = new ImageIcon(".png");
-  /** button with ball on it. */
+   private ImageIcon backpack = new ImageIcon("backpack.png");
+   /** button with ball on it. */
    private JButton bPokedex = new JButton(pokedex);
-  /** button with backpack on it. */
+   /** button with backpack on it. */
    private JButton bBackpack = new JButton(backpack);
+   /** button with ball on it. */
+   //private JButton bRecent = new JButton("Recent");
+   /** button with backpack on it. */
+   //private JButton bNumber = new JButton("Number");
    
+  
+   /********** Choice drop down menu for GPA. **/
+   private Choice chSort = new Choice();
+
+   Border blueline = BorderFactory.createLineBorder(Color.blue);
+
 
   
   /********* sub-panel. *********/
@@ -50,10 +63,11 @@ public class PokemonPanel extends JPanel {
   //parameters are default size in (rows,cols) chars
    private JTextArea textArea1 = new JTextArea(5,25);
    //parameters are default size in (rows,cols) chars
-   private JTextArea textArea2 = new JTextArea(5,25);
+   private JTextArea textArea2 = new JTextArea(20,25);
    /******** text field. *******/
    private JTextField tf = new JTextField(25);
-
+   //private Border blackline;
+   //blackline = BorderFactory.createLineBorder(Color.black);
    
   /** Make TextArea scrollable. **********************/
    private JScrollPane scroll1 = new JScrollPane(textArea1,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, 
@@ -68,17 +82,22 @@ public class PokemonPanel extends JPanel {
   */
    public PokemonPanel() {
     
-      GridLayout gl = new GridLayout(3, 1);
+      //GridLayout gl = new GridLayout(3, 1);
       this.setLayout(new BorderLayout()); //Border panel layout
       this.setPreferredSize(new Dimension(400, 500));
       topSubPanel.setBackground(Color.gray); //north area color
+      //centerSubPanel.setBorder(BorderFactory.createLineBorder(Color.black));
       centerSubPanel.setBackground(Color.gray); //center area color
-      centerSubPanel.setLayout(gl);
+      //centerSubPanel.setLayout(gl);
+      //centerSubPanel.setLayout(new BorderLayout());
    
       bottomSubPanel.setBackground(Color.gray); //bottomSubPanel area color
      
      //adding title to the topSubPanel
-      topSubPanel.add(lTitle);
+      topSubPanel.setBorder((BorderFactory.createTitledBorder(
+                       blueline, "To catch a Pokemon")));
+     
+      //topSubPanel.add(lTitle);
       this.add("North", topSubPanel); //adding top sub-panel to North
    
      
@@ -93,6 +112,7 @@ public class PokemonPanel extends JPanel {
       
    
       textArea1.setEditable(false);
+      textArea1.setBorder(BorderFactory.createLineBorder(Color.black));
       textArea2.setEditable(false);
       scroll1.setBorder(null);
       centerSubPanel.add(scroll1);  //add scrollPane, textArea inside.        
@@ -113,6 +133,10 @@ public class PokemonPanel extends JPanel {
       bottomSubPanel.add(bBackpack);
       bPokedex.addActionListener(listener); //add listener to button
       bBackpack.addActionListener(listener); //add listener to button 
+      
+      chSort.add("Recent");
+      chSort.add("Number");
+
      
       scroll2.setBorder(null);
       bottomSubPanel.add(scroll2);  //add scrollPane, textArea inside.        
@@ -144,7 +168,7 @@ public class PokemonPanel extends JPanel {
       //if "hunt" button clicked, a random pokemon appeared  
          if (event.getSource() == bHunt) {
             pTemp = choosePokemon();
-            tf.setText("A wild "+ pTemp.getSpecies() + "appeared! ");
+            tf.setText("A wild "+ pTemp.getSpecies() + " appeared! ");
             textArea1.setText( "\n" + pTemp.toString() + "\n");
          }
       //if "Catch" button clicked   
@@ -158,6 +182,10 @@ public class PokemonPanel extends JPanel {
          } 
       //if "Backpack" button clicked   
          if (event.getSource()  == bBackpack) { 
+         
+                 
+         
+         
          //components
          } 
       
@@ -252,17 +280,20 @@ public class PokemonPanel extends JPanel {
       } // end recentSort
    
    
-      private void numberSort() {
+      private String numberSort() {
       
+         String s = "";
          System.out.println("========= Sorted Pokemon by number==========");
          System.out.println();
       
          while (pq.size() > 0) {
             Pokemon curr = pq.poll();
-            System.out.println(curr.toString() + "\n");
+            s = s + curr.toString() + "\n";
+            
+            //System.out.println(curr.toString() + "\n");
          }     
       
-              
+         return s;     
       } // end numberSort
    
    
