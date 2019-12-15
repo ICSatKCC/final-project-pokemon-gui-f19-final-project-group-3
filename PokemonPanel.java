@@ -31,11 +31,12 @@ public class PokemonPanel extends JPanel {
    private JButton bPokedex = new JButton(pokedex);
    /** button with backpack on it. */
    private JButton bBackpack = new JButton(backpack);
-   /** button with ball on it. */
-   //private JButton bRecent = new JButton("Recent");
-   /** button with backpack on it. */
-   //private JButton bNumber = new JButton("Number");
-   
+   /** pop up button. */
+   private JButton bRec = new JButton("Recent");
+   /** pop up button. */
+   private JButton bNum = new JButton("Number");
+
+      
   
    /********** Choice drop down menu for GPA. **/
    private Choice chSort = new Choice();
@@ -124,6 +125,9 @@ public class PokemonPanel extends JPanel {
       centerSubPanel.add(bCatch);
       bCatch.addActionListener(listener); //add listener to button
    
+      bRec.addActionListener(listener);
+      bNum.addActionListener(listener);
+   
       
       //add the center sub-panel to Center of main panel
       add("Center", centerSubPanel);
@@ -136,7 +140,7 @@ public class PokemonPanel extends JPanel {
       
       chSort.add("Recent");
       chSort.add("Number");
-
+   
      
       scroll2.setBorder(null);
       bottomSubPanel.add(scroll2);  //add scrollPane, textArea inside.        
@@ -180,14 +184,27 @@ public class PokemonPanel extends JPanel {
          if (event.getSource()  == bPokedex) { 
             textArea2.setText(pTree.printPokeTree2() + "\n");
          } 
+      
       //if "Backpack" button clicked   
          if (event.getSource()  == bBackpack) { 
+              SortingChoice();   
+                                      
+         }
+         if (event.getSource()  == bRec) {
+            textArea2.setText(numberSort() + "\n");
+                   
+         }
+         if (event.getSource()  == bNum) {
+            textArea2.setText(recentSort() + "\n");
+                   
+         }                     
          
+      
                  
          
          
          //components
-         } 
+         
       
       } //actionEvent method
    
@@ -272,29 +289,45 @@ public class PokemonPanel extends JPanel {
          while (stack.size() > 0) {
             Pokemon curr = stack.poll();
             sRecent = sRecent + curr.toString() + "\n\n";
-         
+            
          }
-         return sRecent
+         return sRecent;
       
       } // end recentSort
    
    
       private String numberSort() {
       
-         String s = "";
-         System.out.println("========= Sorted Pokemon by number==========");
-         System.out.println();
+         String sNumber = "";
       
          while (pq.size() > 0) {
             Pokemon curr = pq.poll();
-            s = s + curr.toString() + "\n";
-            
+            sNumber = sNumber + curr.toString() + "\n";
+          
             //System.out.println(curr.toString() + "\n");
          }     
       
-         return s;     
+         return sNumber;     
       } // end numberSort
    
+   
+      private void SortingChoice(){
+         Object[] options = {"Number",
+                    "Recent"};
+         
+         JFrame frm = new JFrame("Pokemon");
+         
+         int n = JOptionPane.showOptionDialog(frm,
+               "Would you like to sort your Pokemons by Recent or by Number?",
+               "Backpack",
+               JOptionPane.YES_NO_OPTION,
+               JOptionPane.QUESTION_MESSAGE,
+               null,     //do not use a custom Icon
+               options,  //the titles of buttons
+               options[0]); //default button title
+      
+      
+      }
    
    
    } // end GUIListener private class

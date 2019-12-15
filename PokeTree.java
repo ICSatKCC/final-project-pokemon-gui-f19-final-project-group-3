@@ -142,9 +142,9 @@ public class PokeTree {
       else {
          node.decreaseNumCaught();
       //delete the pokemon if numcaught is 0    
-         if (node.getNumCaught() == 0){
+         if (node.getNumCaught() == 0) {
          // call private method remove
-         node = this.remove(node);
+            node = this.remove(node);
          }
          return node;
       }
@@ -180,8 +180,8 @@ public class PokeTree {
       // get next Smaller Item, which is Largest Item in Left Subtree
       // The next Smaller Item is stored at the rightmost node in the left
       // subtree.
-         Pokemon largestPokemonInLeftSubtree = this.getPokemonWithLargestSearchKey(node
-             .getLChild());
+         Pokemon largestPokemonInLeftSubtree = 
+              this.getPokemonWithLargestSearchKey(node.getLChild());
       // replace the node's Pokemon with this Pokemon
          node.switchPokemon(largestPokemonInLeftSubtree);
       // delete the rightmost node in the left subtree
@@ -231,36 +231,53 @@ public class PokeTree {
    }
 
 
-//print method
+/**
+   * print method. 
+   */
 
-   public void printPokeTree(){
+   public void printPokeTree() {
       this.printPokeTree(root);
    }
+/**
+   * print method. 
+   * @return a String holding the output
+   */
    
-   public String printPokeTree2(){
+   public String printPokeTree2() {
       
       return this.printPokeTree2(root);
    }
 
+/**
+   * print method. 
+   * @param node The root of the tree/subtree
+   * switch position to print the tree by inorder
+   */   
    
-//switch position to print the tree by inorder
-   
-   public void printPokeTree(PokeNode root){
-      if(root != null){
-         printPokeTree(root.getLChild());
-         System.out.println( "  " + root.getPokemon( ).toString() + "\nCaught: "+root.getNumCaught( ) );
-         printPokeTree(root.getRChild());
+   public void printPokeTree(PokeNode node) {
+      if (node != null) {
+         printPokeTree(node.getLChild());
+         System.out.println("  " + node.getPokemon().toString() 
+             + "\nCaught: " + node.getNumCaught());
+         printPokeTree(node.getRChild());
       
       }
    }
-   
-   public String printPokeTree2(PokeNode root){
+ 
+  /**
+   * print method. 
+   * @param node The root of the tree/subtree
+   * @return a String holding the output
+   */
+ 
+   public String printPokeTree2(PokeNode node) {
       
       String s = "";
-      if(root != null){
-         s = s + printPokeTree2(root.getLChild());
-         s = s +  "  " + root.getPokemon( ).toString() + "\nCaught: "+root.getNumCaught( ) + "\n\n";
-         s = s + printPokeTree2(root.getRChild());
+      if (node != null) {
+         s = s + printPokeTree2(node.getLChild());
+         s = s + "  " + node.getPokemon().toString() 
+               + "\nCaught: " + node.getNumCaught() + "\n\n";
+         s = s + printPokeTree2(node.getRChild());
       }
       return s;
    }

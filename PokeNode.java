@@ -25,7 +25,7 @@ public class PokeNode {
 	 * @param lChild The address of the left child
 	 * @param rChild The address of the right child
 	 */
-   public PokeNode(Pokemon p , int numCaught, PokeNode lChild, PokeNode rChild) {
+   public PokeNode(Pokemon p, int numCaught, PokeNode lChild, PokeNode rChild) {
       data = p;
       left = lChild;
       right = rChild;
@@ -91,14 +91,14 @@ public class PokeNode {
 
 
 	/**
-	 * void method to increase NumCaught
+	 * void method to increase NumCaught.
 	 */
    public void increaseNumCaught() {
       numCaught++;
    }
    
    /**
-	 *void method to decrease NumCaught
+	 *void method to decrease NumCaught.
 	 */
    public void decreaseNumCaught() {
       numCaught--;
@@ -128,14 +128,24 @@ public class PokeNode {
    }
    
    
-   // Switch Pokemon to help remove node   
+   /**
+	 * helper method.
+	 * 
+	 * @param newPokemon
+	 * Switch Pokemon to help remove node          
+	 */
    public void switchPokemon(Pokemon newPokemon) {
    	// calls a private setPokemon method
       this.setPokemon(newPokemon);
    }
    
-   
-   private Pokemon setPokemon(Pokemon newPoke){
+   /**
+	 * helper method.
+	 * @param newPoke the new Pokemon
+    * @return data the replaced Pokemon
+	 * Switch Pokemon to help remove node          
+	 */
+   private Pokemon setPokemon(Pokemon newPoke) {
       data = newPoke;
       return data;
    }
