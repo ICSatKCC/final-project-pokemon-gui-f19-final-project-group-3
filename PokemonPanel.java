@@ -18,30 +18,31 @@ public class PokemonPanel extends JPanel {
   /********* label. ************/
  //  private JLabel lTitle = new JLabel("To Catch a Pokemon");
    /********* label. ************/
-   private JLabel lMsg = new JLabel("                ");
+ //  private JLabel jImage = new JLabel("");
   /******* button. ****************/
    private JButton bHunt = new JButton(" Hunt ");
    /******* button. ****************/
    private JButton bCatch = new JButton(" Catch ");
    /******* button with pic. ****************/
-   private ImageIcon pokedex = new ImageIcon("pokedex.png");
+   private ImageIcon pokedex = new ImageIcon("pokedex_phone.png");
    /******* button with pic. ****************/
-   private ImageIcon backpack = new ImageIcon("backpack.png");
+   private ImageIcon backpack = new ImageIcon("backpack_icon.png");
+   
    /** button with ball on it. */
    private JButton bPokedex = new JButton(pokedex);
    /** button with backpack on it. */
    private JButton bBackpack = new JButton(backpack);
    /** pop up button. */
-   private JButton bRec = new JButton("Recent");
+   private JButton bRec = new JButton(" Recent ");
    /** pop up button. */
-   private JButton bNum = new JButton("Number");
+   private JButton bNum = new JButton(" Number ");
 
       
   
    /********** Choice drop down menu for GPA. **/
    private Choice chSort = new Choice();
 
-   Border blueline = BorderFactory.createLineBorder(Color.blue);
+   private Border blueline = BorderFactory.createLineBorder(Color.blue);
 
 
   
@@ -57,14 +58,45 @@ public class PokemonPanel extends JPanel {
   
   /******** Pokemon.*********/
    private Pokemon pk;
+   /******* pokemon pic. ****************/
+   private ImageIcon iTemp = new ImageIcon("Question_mark.png");
+   /******* pokemon pic. ****************/
+   private ImageIcon blastoise = new ImageIcon("Blastoise.png");
+   /******* pokemon pic. ****************/
+   private ImageIcon bulbasaur = new ImageIcon("Bulbasaur.png");
+   /******* pokemon pic. ****************/
+   private ImageIcon charmander = new ImageIcon("Charmander.png");
+   /******* pokemon pic. ****************/
+   private ImageIcon charmeleon = new ImageIcon("Charmeleon.png");
+   /******* pokemon pic. ****************/
+   private ImageIcon charizard = new ImageIcon("Charizard.png");
+   /******* pokemon pic. ****************/
+   private ImageIcon ivysaur = new ImageIcon("Ivysaur.png");
+   /******* pokemon pic. ****************/
+   private ImageIcon squirtle = new ImageIcon("Squirtle.png");
+   /******* pokemon pic. ****************/
+   private ImageIcon venusaur = new ImageIcon("Venusaur.png");
+   /******* pokemon pic. ****************/
+   private ImageIcon wartortle = new ImageIcon("Wartortle.png");
+   
+   /********* label. ************/
+   private JLabel jImage = new JLabel(iTemp);
+
+
+   
+   
+   
+   
+   
+   
    
   /******** String for holding Student for display. */ 
    private String sOut = new String("");
   /****** text are for displaying Pokemon.toString()s. */
   //parameters are default size in (rows,cols) chars
-   private JTextArea textArea1 = new JTextArea(5,25);
+   private JTextArea textArea1 = new JTextArea(9,25);
    //parameters are default size in (rows,cols) chars
-   private JTextArea textArea2 = new JTextArea(20,25);
+   private JTextArea textArea2 = new JTextArea(10,25);
    /******** text field. *******/
    private JTextField tf = new JTextField(25);
    //private Border blackline;
@@ -83,16 +115,20 @@ public class PokemonPanel extends JPanel {
   */
    public PokemonPanel() {
     
-      //GridLayout gl = new GridLayout(3, 1);
+      GridLayout gl = new GridLayout(1, 2);
       this.setLayout(new BorderLayout()); //Border panel layout
-      this.setPreferredSize(new Dimension(400, 500));
-      topSubPanel.setBackground(Color.gray); //north area color
+      this.setPreferredSize(new Dimension(400, 600));
+      topSubPanel.setPreferredSize(new Dimension(400, 350));
+      topSubPanel.setBackground(Color.lightGray); //north area color
+      
       //centerSubPanel.setBorder(BorderFactory.createLineBorder(Color.black));
       centerSubPanel.setBackground(Color.lightGray); //center area color
-      //centerSubPanel.setLayout(gl);
+      centerSubPanel.setPreferredSize(new Dimension(400, 50));
+      centerSubPanel.setLayout(gl);
       //centerSubPanel.setLayout(new BorderLayout());
    
       bottomSubPanel.setBackground(Color.lightGray); //bottomSubPanel area color
+      bottomSubPanel.setPreferredSize(new Dimension(400, 200));
      
      //adding title to the topSubPanel
       topSubPanel.setBorder((BorderFactory.createTitledBorder(
@@ -104,8 +140,9 @@ public class PokemonPanel extends JPanel {
      
      
      //add textFields
-      centerSubPanel.add(tf);
-      
+      topSubPanel.add(tf);
+      topSubPanel.add(jImage);
+            
       //set up the textArea for holding list
       //make the textArea look like the background instead of white
       textArea1.setBackground(Color.white);
@@ -115,14 +152,15 @@ public class PokemonPanel extends JPanel {
       textArea1.setEditable(false);
       textArea1.setBorder(BorderFactory.createLineBorder(Color.black));
       textArea2.setEditable(false);
+      textArea2.setBorder(BorderFactory.createLineBorder(Color.black));
       scroll1.setBorder(null);
-      centerSubPanel.add(scroll1);  //add scrollPane, textArea inside.        
+      topSubPanel.add(scroll1);  //add scrollPane, textArea inside.        
       scroll1.getVerticalScrollBar().setPreferredSize(new Dimension(10, 0));
       
       //add buttons
-      centerSubPanel.add(bHunt);
+      topSubPanel.add(bHunt);
       bHunt.addActionListener(listener); //add listener to button
-      centerSubPanel.add(bCatch);
+      topSubPanel.add(bCatch);
       bCatch.addActionListener(listener); //add listener to button
    
       bRec.addActionListener(listener);
@@ -133,13 +171,13 @@ public class PokemonPanel extends JPanel {
       add("Center", centerSubPanel);
      
      //adding textarea2, buttons to the bottomSubPanel sub-panel
-      bottomSubPanel.add(bPokedex);
-      bottomSubPanel.add(bBackpack);
+      centerSubPanel.add(bPokedex);
+      centerSubPanel.add(bBackpack);
       bPokedex.addActionListener(listener); //add listener to button
       bBackpack.addActionListener(listener); //add listener to button 
       
-      chSort.add("Recent");
-      chSort.add("Number");
+      //chSort.add("Recent");
+      //chSort.add("Number");
    
      
       scroll2.setBorder(null);
@@ -157,7 +195,10 @@ public class PokemonPanel extends JPanel {
       Pokemon pTemp = new Bulbasaur();
       PokeTree pTree = new PokeTree();
       PriorityQueue<Pokemon> pq = new PriorityQueue<>();
+      PriorityQueue<Pokemon> pqTemp = new PriorityQueue<>();
       Deque<Pokemon> stack = new LinkedList<>();
+      Deque<Pokemon> stackTemp = new LinkedList<>();
+
    
    
    /**
@@ -191,19 +232,15 @@ public class PokemonPanel extends JPanel {
                                       
          }
          if (event.getSource()  == bRec) {
-            textArea2.setText(numberSort() + "\n");
+            sOut = recentSort();
+            textArea2.setText(sOut + "\n");
                    
          }
          if (event.getSource()  == bNum) {
-            textArea2.setText(recentSort() + "\n");
+            sOut = numberSort();
+            textArea2.setText(sOut + "\n");
                    
          }                     
-         
-      
-                 
-         
-         
-         //components
          
       
       } //actionEvent method
@@ -224,30 +261,39 @@ public class PokemonPanel extends JPanel {
          switch(speChoice) {
             case 1:
                p = new Bulbasaur();
+               jImage.setIcon(bulbasaur);
                break;
             case 2: 
                p = new Ivysaur();
+               jImage.setIcon(ivysaur);
                break;
             case 3: 
                p = new Venusaur();
+               jImage.setIcon(venusaur);
                break;
             case 4: 
                p = new Charmander();
+               jImage.setIcon(charmander);
                break;
             case 5: 
                p = new Charmeleon();
+               jImage.setIcon(charmeleon);
                break;
             case 6: 
                p = new Charizard();
+               jImage.setIcon(charizard);
                break;
             case 7: 
                p = new Squirtle();
+               jImage.setIcon(squirtle);
                break;
             case 8: 
                p = new Wartortle();
+               jImage.setIcon(wartortle);
                break;
             case 9: 
                p = new Blastoise();
+               jImage.setIcon(blastoise);
                break;
             default: 
                break;
@@ -289,7 +335,11 @@ public class PokemonPanel extends JPanel {
          while (stack.size() > 0) {
             Pokemon curr = stack.poll();
             sRecent = sRecent + curr.toString() + "\n\n";
+            stackTemp.push(curr);
             
+         }
+         while (stackTemp.size() > 0) {
+            stack.push(stackTemp.poll());
          }
          return sRecent;
       
@@ -302,18 +352,24 @@ public class PokemonPanel extends JPanel {
       
          while (pq.size() > 0) {
             Pokemon curr = pq.poll();
-            sNumber = sNumber + curr.toString() + "\n";
-          
-            //System.out.println(curr.toString() + "\n");
-         }     
-      
+            sNumber = sNumber + curr.toString() + "\n\n";
+            pqTemp.add(curr);
+         } 
+         while (pqTemp.size() > 0) {
+            pq.add(pqTemp.poll());
+         } 
+             
          return sNumber;     
+   
       } // end numberSort
    
    
       private void SortingChoice(){
-         Object[] options = {"Number",
-                    "Recent"};
+        // Object[] options = {"Number",
+         //           "Recent"};
+          JButton[] options = {bRec,
+                    bNum};
+
          
          JFrame frm = new JFrame("Pokemon");
          
