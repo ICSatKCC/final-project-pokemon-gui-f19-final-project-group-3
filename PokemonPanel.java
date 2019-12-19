@@ -313,6 +313,7 @@ public class PokemonPanel extends JPanel {
          }
       
       } //end catchPokemon method
+ 
      
      /**
    * helper method for to sort Pokemon.
@@ -336,6 +337,7 @@ public class PokemonPanel extends JPanel {
          return sRecent;
       
       } // end recentSort
+  
    
    /**
    * helper method for to sort Pokemon.
